@@ -1,15 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Lorenzo Andreoli</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <title>Lorenzo Andreoli | Portfolio</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-    
-    
+    <header>
+        <nav class="navegacao">
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#experiencia">Experiências</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section id="home" class="home">
+      <div class="home-content">
+        <img 
+          src="assets/img/Lorenzo.jpg" 
+          alt="Foto de Lorenzo Carneiro Andreoli" 
+          class="profile-img"
+        />
+
+        <h1 id="typewriter"></h1>
+
+        <p class="desc">
+          Desenvolvedor Full Stack com foco em backend, cloud e segurança. Experiência prática no desenvolvimento
+          de sistemas institucionais reais, APIs REST, autenticação segura, banco de dados MySQL, Docker e serviços da AWS.
+        </p>
+
+        <div class="home-actions">
+          <a href="#projetos" class="btn-primary">Ver projetos</a>
+          <a href="#contato" class="btn-secondary">Entrar em contato</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="sobre">
+      <div class="container">
+        <h2>Sobre mim</h2>
+
+        <p>
+          Meu nome é Lorenzo Carneiro Andreoli, sou desenvolvedor Full Stack com foco em backend,
+          cloud e construção de sistemas web escaláveis. Atualmente curso Análise e Desenvolvimento de Sistemas
+          na Pontifícia Universidade Católica do Paraná, com formação prevista para agosto de 2026.
+        </p>
+
+        <p>
+          Tenho experiência com Java, Spring Boot, Spring Security, APIs REST, MySQL, Docker, AWS e boas práticas
+          de arquitetura MVC. Também atuo no frontend com HTML, CSS, JavaScript, React e Next.js.
+        </p>
+
+        <div class="skills">
+          <span>Java</span>
+          <span>Spring Boot</span>
+          <span>Spring Security</span>
+          <span>APIs REST</span>
+          <span>MySQL</span>
+          <span>Docker</span>
+          <span>AWS</span>
+          <span>JUnit</span>
+          <span>Mockito</span>
+          <span>React</span>
+          <span>Next.js</span>
+          <span>GitHub</span>
+        </div>
+      </div>
+    </section>
+
 
 <script src="assets/js/script.js"></script>
 </body>
