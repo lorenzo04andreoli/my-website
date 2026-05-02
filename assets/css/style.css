@@ -246,3 +246,230 @@ header {
   background: #000000;
   color: #ffffff;
 }
+
+/* EXPERIÊNCIA */
+
+.experiencia {
+  background: #050505;
+}
+
+.experiencia-lista {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.experiencia-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 32px;
+  border-radius: 22px;
+  transition: all 0.3s ease;
+}
+
+.experiencia-card:hover {
+  transform: translateY(-8px);
+  border-color: #ffffff;
+  box-shadow: 0 18px 40px rgba(255, 255, 255, 0.08);
+}
+
+.experiencia-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.experiencia-card h4 {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.periodo {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.experiencia-card p {
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+.experiencia-card ul {
+  padding-left: 20px;
+}
+
+.experiencia-card li {
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* PROJETOS */
+
+.projetos {
+  background: #ffffff;
+  color: #000000;
+}
+
+.projetos h2 {
+  color: #000000;
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.projeto-card {
+  background: #f5f5f5;
+  border: 1px solid #dedede;
+  border-radius: 22px;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.projeto-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.18);
+  border-color: #000000;
+}
+
+.projeto-img-wrapper {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  background: #000000;
+}
+
+.projeto-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease, filter 0.45s ease;
+  filter: grayscale(100%);
+}
+
+.projeto-card:hover .projeto-img-wrapper img {
+  transform: scale(1.12);
+  filter: grayscale(0%);
+}
+
+.projeto-card h3 {
+  font-size: 1.25rem;
+  margin: 22px 22px 10px;
+  color: #000000;
+}
+
+.projeto-card p {
+  margin: 0 22px 26px;
+  color: #333333;
+  font-size: 0.96rem;
+}
+
+/* CONTATO */
+
+.contato {
+  background:
+    radial-gradient(circle at bottom, #1f1f1f 0%, transparent 35%),
+    #050505;
+  text-align: center;
+}
+
+.contato p {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.contato-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.contato-links a {
+  width: 55px;
+  height: 55px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.contato-links a:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-5px) scale(1.08);
+}
+
+/* FOOTER */
+
+.footer {
+  padding: 28px 0;
+  text-align: center;
+  background: #000000;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 950px) {
+  .experiencia-lista,
+  .projetos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projeto-img-wrapper {
+    height: 240px;
+  }
+}
+
+@media (max-width: 700px) {
+  section {
+    padding: 80px 0;
+  }
+
+  .menu {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .menu a {
+    font-size: 0.85rem;
+  }
+
+  .home {
+    padding-top: 170px;
+  }
+
+  .profile-img {
+    width: 170px;
+    height: 170px;
+  }
+
+  #typewriter {
+    font-size: 2rem;
+  }
+
+  .desc {
+    font-size: 1rem;
+  }
+
+  .experiencia-card {
+    padding: 24px;
+  }
+}
