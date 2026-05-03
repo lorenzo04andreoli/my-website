@@ -1,41 +1,65 @@
-const textElement = document.getElementById("typewriter");
+/* TYPEWRITER */
 
-const words = [
-  "Lorenzo Andreoli",
-  "Backend Engineer",
-  "Cloud Practitioner",
-  "Full Stack Developer"
-];
+function initTypewriter() {
+  const textElement = document.getElementById("typewriter");
 
-let wordIndex = 0;
-let letterIndex = 0;
-let isDeleting = false;
+  if (!textElement) return; 
 
-function typeEffect() {
-  const currentWord = words[wordIndex];
+  const words = [
+    "Lorenzo Andreoli",
+    "Backend Developer",
+    "Cloud Practitioner",
+  ];
 
-  if (!isDeleting) {
-    textElement.textContent = currentWord.substring(0, letterIndex++);
-  } else {
-    textElement.textContent = currentWord.substring(0, letterIndex--);
+  let wordIndex = 0;
+  let letterIndex = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    const currentWord = words[wordIndex];
+
+    if (!isDeleting) {
+      textElement.textContent = currentWord.substring(0, letterIndex++);
+    } else {
+      textElement.textContent = currentWord.substring(0, letterIndex--);
+    }
+
+    let speed = isDeleting ? 40 : 80;
+
+    if (letterIndex === currentWord.length + 1) {
+      isDeleting = true;
+      speed = 1200;
+    }
+
+    if (letterIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      speed = 400;
+    }
+
+    setTimeout(typeEffect, speed);
   }
 
-  let speed = isDeleting ? 40 : 80;
-
-  
-  if (letterIndex === currentWord.length + 1) {
-    isDeleting = true;
-    speed = 1200;
-  }
-
-
-  if (letterIndex === 0) {
-    isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length;
-    speed = 400;
-  }
-
-  setTimeout(typeEffect, speed);
+  typeEffect();
 }
 
-typeEffect();
+/* MENU HAMBURGUER */
+
+function initMenu() {
+  const hamburguer = document.getElementById("hamburguer");
+  const menu = document.getElementById("menu");
+
+  if (!hamburguer || !menu) return;
+
+  hamburguer.addEventListener("click", () => {
+    menu.classList.toggle("active");
+    hamburguer.classList.toggle("active");
+  });
+}
+
+/* INIT GERAL */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initTypewriter();
+  initMenu();
+});

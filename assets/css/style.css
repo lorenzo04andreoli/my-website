@@ -60,8 +60,7 @@ header {
   position: fixed;
   top: 0;
   z-index: 1000;
-  background: rgba(5, 5, 5, 0.85);
-  backdrop-filter: blur(12px);
+  background: #050505;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -105,6 +104,25 @@ header {
 .menu a:hover::after {
   width: 100%;
 }
+
+/* BOTÃO HAMBURGUER */
+
+.hamburguer{
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburguer span {
+  width: 25px;
+  height: 3px;
+  background: var(--text-primary);
+  border-radius: 2px;
+}
+
 
 /* HOME */
 
@@ -254,17 +272,69 @@ header {
 }
 
 .experiencia-lista {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.experiencia-lista::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #ffffff,
+    transparent
+  );
+  transform: translateX(-50%);
+  opacity: 0.35;
 }
 
 .experiencia-card {
+  position: relative;
+  width: calc(50% - 45px);
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   padding: 32px;
-  border-radius: 22px;
+  border-radius: 18px;
   transition: all 0.3s ease;
+}
+
+.experiencia-card:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.experiencia-card:nth-child(even) {
+  align-self: flex-end;
+}
+
+.experiencia-card::before {
+  content: "";
+  position: absolute;
+  top: 42px;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border: 5px solid #050505;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #ffffff;
+  z-index: 2;
+}
+
+.experiencia-card:nth-child(odd)::before {
+  right: -55px;
+}
+
+.experiencia-card:nth-child(even)::before {
+  left: -55px;
 }
 
 .experiencia-card:hover {
@@ -281,7 +351,7 @@ header {
 .experiencia-card h4 {
   color: var(--text-secondary);
   font-size: 1rem;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .periodo {
@@ -465,8 +535,8 @@ header {
 
 /* RESPONSIVO */
 
+/* Tablet */
 @media (max-width: 950px) {
-  .experiencia-lista,
   .projetos-grid {
     grid-template-columns: 1fr;
   }
@@ -476,14 +546,68 @@ header {
   }
 }
 
+/* Timeline tablet/mobile */
+@media (max-width: 850px) {
+  .experiencia-lista {
+    gap: 35px;
+    padding-left: 28px;
+  }
+
+  .experiencia-lista::before {
+    left: 0;
+  }
+
+  .experiencia-card,
+  .experiencia-card:nth-child(odd),
+  .experiencia-card:nth-child(even) {
+    width: 100%;
+    align-self: flex-end;
+  }
+
+  .experiencia-card::before,
+  .experiencia-card:nth-child(odd)::before,
+  .experiencia-card:nth-child(even)::before {
+    left: -37px;
+    right: auto;
+  }
+}
+
+/* Mobile */
 @media (max-width: 700px) {
   section {
     padding: 80px 0;
   }
 
+  .hamburguer {
+    display: flex;
+  }
+
+  .navegacao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .menu {
-    gap: 18px;
-    flex-wrap: wrap;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #050505;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .menu.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .menu a {
@@ -509,5 +633,12 @@ header {
 
   .experiencia-card {
     padding: 24px;
+  }
+}
+
+@media (hover: none) {
+  .overlay {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.55);
   }
 }
