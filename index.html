@@ -4,35 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <title>Lorenzo Andreoli | Portfolio</title>
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-    <!-- HOME -->
+  <!-- NAVBAR -->
 
-    <header>
+  <header>
+      <nav class="navegacao">
 
-        <nav class="navegacao">
+        <button class="hamburguer" id="hamburguer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-          <button class="hamburguer" id="hamburguer">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <ul class="menu" id="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#experiencia">Experiências</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
 
-          <ul class="menu" id="menu">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#sobre">Sobre</a></li>
-              <li><a href="#experiencia">Experiências</a></li>
-              <li><a href="#projetos">Projetos</a></li>
-              <li><a href="#contato">Contato</a></li>
-          </ul>
-        </nav>
+  </header>
 
-    </header>
+  <main>
 
     <!-- HOME -->
 
@@ -47,8 +49,8 @@
         <h1 id="typewriter"></h1>
 
         <p class="desc">
-          Desenvolvedor Full Stack com foco em backend, cloud e segurança. Experiência prática no desenvolvimento
-          de sistemas institucionais reais, APIs REST, autenticação segura, banco de dados MySQL, Docker e serviços da AWS.
+          Desenvolvedor Full Stack com foco em backend. Experiência prática no desenvolvimento
+          de sistemas, APIs REST, autenticação segura, banco de dados MySQL, Docker e serviços da AWS.
         </p>
 
         <div class="home-actions">
@@ -65,8 +67,8 @@
         <h2>Sobre mim</h2>
 
         <p>
-          Meu nome é Lorenzo Carneiro Andreoli, sou desenvolvedor Full Stack com foco em backend,
-          cloud e construção de sistemas web escaláveis. Atualmente curso Análise e Desenvolvimento de Sistemas
+          Meu nome é Lorenzo Carneiro Andreoli, sou desenvolvedor de software com foco em backend
+          e construção de sistemas web escaláveis. Atualmente curso Análise e Desenvolvimento de Sistemas
           na Pontifícia Universidade Católica do Paraná, com formação prevista para agosto de 2026.
         </p>
 
@@ -150,7 +152,7 @@
         <h2>Projetos</h2>
 
         <div class="projetos-grid">
-          <a href="https://github.com/lorenzo04andreoli/Adm-Control-CC" target="_blank" class="projeto-link">
+          <a href="https://github.com/lorenzo04andreoli/Adm-Control-CC" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
               <div class="projeto-img-wrapper">
                 <img src="assets/img/Dashboard CCC.jpg" alt="Imagem ilustrativa do projeto JudicialControl" />
@@ -167,7 +169,7 @@
             </article>
           </a>
 
-          <a href="https://github.com/lorenzo04andreoli/gestao-consultas-backend" target="_blank" class="projeto-link">
+          <a href="https://github.com/lorenzo04andreoli/gestao-consultas-backend" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
               <div class="projeto-img-wrapper">
                 <img src="assets/img/Gestao Consultas.png" alt="Imagem ilustrativa de API REST" />
@@ -184,7 +186,7 @@
             </article>
           </a>
 
-          <a href="https://github.com/lorenzo04andreoli/projeto-devops" target="_blank" class="projeto-link">
+          <a href="https://github.com/lorenzo04andreoli/projeto-devops" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
               <div class="projeto-img-wrapper">
                 <img src="assets/img/devops.png" alt="Imagem ilustrativa de cloud computing" />
@@ -200,7 +202,7 @@
           </article>
           </a>
 
-          <a href="https://github.com/lorenzo04andreoli/qr-code-generator" target="_blank" class="projeto-link">
+          <a href="https://github.com/lorenzo04andreoli/qrcode.generator" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
               <div class="projeto-img-wrapper">
                 <img src="assets/img/qrcode.png" alt="Imagem ilustrativa de gerador de QR Code" />
@@ -217,7 +219,7 @@
           </article>
           </a>
 
-          <a href="https://github.com/lorenzo04andreoli/automacao-documentos" target="_blank" class="projeto-link">
+          <a href="https://github.com/lorenzo04andreoli/Rename-Action" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
               <div class="projeto-img-wrapper">
                 <img src="assets/img/automacao python.jpg" alt="Imagem ilustrativa de automação com Python" />
@@ -234,7 +236,7 @@
             </article>
           </a>
 
-          <a href="https://github.com/lorenzo04andreoli/analisador-curriculos-ia" target="_blank" class="projeto-link">
+          <a href="http://github.com/lorenzo04andreoli/CurriculumAI" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
               <div class="projeto-img-wrapper">
                 <img src="assets/img/analisador curriculos IA.jpg" alt="Imagem ilustrativa de portfolio web" />
@@ -263,6 +265,34 @@
           Entre em contato comigo para oportunidades, projetos freelance ou networking profissional.
         </p>
 
+        <form 
+          method="POST"
+          id="form_contato"
+          class="form-contato"
+        >
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="Nome" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Assunto</label>
+            <input type="text" id="subject" name="Assunto" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="Mensagem" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" id="submit_button" class="btn-primary">Enviar mensagem</button>
+        </form>
+
         <div class="contato-links">
 
             <a href="mailto:lorenzo04andreoli@gmail.com">
@@ -286,12 +316,13 @@
     </section>
 
   </main>
+  
 
   <footer class="footer">
     <p>&copy; 2026 Lorenzo Carneiro Andreoli. Todos os direitos reservados.</p>
   </footer>
 
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="assets/js/script.js"></script>
 </body>
 </html>

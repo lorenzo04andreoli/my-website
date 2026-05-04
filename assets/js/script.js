@@ -57,9 +57,68 @@ function initMenu() {
   });
 }
 
+/* FORMULÁRIO DE CONTATO */
+
+function initContactForm() {
+  const form = document.getElementById("form_contato");
+  const submitButton = document.getElementById("submit_button");
+
+  if (!form || !submitButton) return;
+
+  emailjs.init("x5spsmiNXoGo1u_jK");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value,
+    };
+
+    const serviceID = "service_cyx8a7z";
+    const templateID = "template_or4y4yt";
+
+    submitButton.textContent = "Enviando...";
+    submitButton.disabled = true;
+
+    emailjs.send(serviceID, templateID, formData)
+      .then(() => {
+        Toastify({
+          text: "E-mail enviado com sucesso!",
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #4CAF50, #45a049)",
+            color: "#fff",
+            fontSize: "16px",
+          }
+        }).showToast();
+
+        form.reset();
+      })
+      .catch(() => {
+        Toastify({
+          text: "Erro ao enviar e-mail. Por favor, tente novamente.",
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #f44336, #d32f2f)",
+            color: "#fff",
+            fontSize: "16px",
+          }
+        }).showToast();
+      })
+      .finally(() => {
+        submitButton.textContent = "Enviar mensagem";
+        submitButton.disabled = false;
+      });
+  });
+}
+
 /* INIT GERAL */
 
 document.addEventListener("DOMContentLoaded", () => {
   initTypewriter();
   initMenu();
+  initContactForm();
 });

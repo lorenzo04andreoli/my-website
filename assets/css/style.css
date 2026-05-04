@@ -6,7 +6,6 @@
 
 :root {
   --bg-primary: #050505;
-  --bg-secondary: #0f0f0f;
   --bg-card: #171717;
   --text-primary: #ffffff;
   --text-secondary: #c9c9c9;
@@ -107,7 +106,7 @@ header {
 
 /* BOTÃO HAMBURGUER */
 
-.hamburguer{
+.hamburguer {
   display: none;
   flex-direction: column;
   gap: 5px;
@@ -382,7 +381,7 @@ header {
   color: #000000;
 }
 
-.projeto-link{
+.projeto-link {
   display: block;
   height: 100%;
   color: inherit;
@@ -422,7 +421,7 @@ header {
   opacity: 1;
 }
 
-.overlay{
+.overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
@@ -492,11 +491,55 @@ header {
   font-size: 1.05rem;
 }
 
+.form-contato {
+  max-width: 600px;
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.form-group label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ffffff;
+}
+
+.form-contato button {
+  margin-top: 10px;
+  align-self: center;
+  cursor: pointer;
+}
+
 .contato-links {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
+  margin-top: 40px;
 }
 
 .contato-links a {
