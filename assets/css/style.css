@@ -440,6 +440,32 @@ header {
   font-size: 1.8rem;
 }
 
+.overlay i,
+.overlay span {
+  transform: translateY(12px);
+  transition: all 0.35s ease;
+}
+
+.projeto-card:active .overlay,
+.projeto-card:focus-within .overlay {
+  opacity: 1;
+}
+
+.projeto-card:active .projeto-img-wrapper img,
+.projeto-card:focus-within .projeto-img-wrapper img {
+  transform: scale(1.12);
+  filter: grayscale(0%);
+}
+
+.projeto-card:hover .overlay i,
+.projeto-card:hover .overlay span,
+.projeto-card:active .overlay i,
+.projeto-card:active .overlay span,
+.projeto-card:focus-within .overlay i,
+.projeto-card:focus-within .overlay span {
+  transform: translateY(0);
+}
+
 .projeto-img-wrapper {
   position: relative;
   width: 100%;
@@ -676,12 +702,5 @@ header {
 
   .experiencia-card {
     padding: 24px;
-  }
-}
-
-@media (hover: none) {
-  .overlay {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.55);
   }
 }
