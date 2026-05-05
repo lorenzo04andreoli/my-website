@@ -115,10 +115,71 @@ function initContactForm() {
   });
 }
 
+/* EFEITO DE ESTRELAS */
+
+function createSpace(canvasId, starCount = 150) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  let stars = [];
+
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  function createStars() {
+    stars = [];
+
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.8 + 0.3,
+        speed: Math.random() * 0.4 + 0.15,
+        opacity: Math.random() * 0.8 + 0.2
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach((star) => {
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      star.y += star.speed;
+
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    createStars();
+  });
+
+  resizeCanvas();
+  createStars();
+  draw();
+}
+
 /* INIT GERAL */
 
 document.addEventListener("DOMContentLoaded", () => {
   initTypewriter();
   initMenu();
   initContactForm();
+  createSpace("space-home", 180);
+  createSpace("space-experiencia", 120);
+  createSpace("space-contato", 100);
 });
