@@ -643,7 +643,7 @@ header {
 /* Tablet */
 @media (max-width: 950px) {
   .projetos-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .projeto-img-wrapper {
@@ -738,5 +738,9 @@ header {
 
   .experiencia-card {
     padding: 24px;
+  }
+
+  .projetos-grid {
+    grid-template-columns: 1fr;
   }
 }
