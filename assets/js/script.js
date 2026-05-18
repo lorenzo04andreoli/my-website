@@ -59,6 +59,34 @@ function initMenu() {
 
 /* FORMULÁRIO DE CONTATO */
 
+function showToast(message, background) {
+  Toastify({
+    text: message,
+    duration: 3000,
+    style: {
+      background,
+      color: "#fff",
+      fontSize: "16px",
+    }
+  }).showToast();
+}
+
+function isValidFullName(name) {
+  const words = name
+    .trim()
+    .split(/\s+/)
+    .filter((word) => /^[A-Za-zÀ-ÖØ-öø-ÿ'-]{2,}$/.test(word));
+
+  return words.length >= 2;
+}
+
+function isValidEmail(email) {
+  const trimmedEmail = email.trim();
+  const emailPattern = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+
+  return emailPattern.test(trimmedEmail) && !trimmedEmail.includes("..");
+}
+
 function initContactForm() {
   const form = document.getElementById("form_contato");
   const submitButton = document.getElementById("submit_button");
@@ -71,11 +99,27 @@ function initContactForm() {
     event.preventDefault();
 
     const formData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      subject: document.getElementById("subject").value,
-      message: document.getElementById("message").value,
+      name: document.getElementById("name").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      subject: document.getElementById("subject").value.trim(),
+      message: document.getElementById("message").value.trim(),
     };
+
+    if (!isValidFullName(formData.name)) {
+      showToast(
+        "Informe seu nome completo, com nome e sobrenome.",
+        "linear-gradient(to right, #f44336, #d32f2f)"
+      );
+      return;
+    }
+
+    if (!isValidEmail(formData.email)) {
+      showToast(
+        "Informe um e-mail válido, como nome@dominio.com.",
+        "linear-gradient(to right, #f44336, #d32f2f)"
+      );
+      return;
+    }
 
     const serviceID = "service_cyx8a7z";
     const templateID = "template_or4y4yt";
@@ -85,28 +129,18 @@ function initContactForm() {
 
     emailjs.send(serviceID, templateID, formData)
       .then(() => {
-        Toastify({
-          text: "E-mail enviado com sucesso!",
-          duration: 3000,
-          style: {
-            background: "linear-gradient(to right, #4CAF50, #45a049)",
-            color: "#fff",
-            fontSize: "16px",
-          }
-        }).showToast();
+        showToast(
+          "E-mail enviado com sucesso!",
+          "linear-gradient(to right, #4CAF50, #45a049)"
+        );
 
         form.reset();
       })
       .catch(() => {
-        Toastify({
-          text: "Erro ao enviar e-mail. Por favor, tente novamente.",
-          duration: 3000,
-          style: {
-            background: "linear-gradient(to right, #f44336, #d32f2f)",
-            color: "#fff",
-            fontSize: "16px",
-          }
-        }).showToast();
+        showToast(
+          "Erro ao enviar e-mail. Por favor, tente novamente.",
+          "linear-gradient(to right, #f44336, #d32f2f)"
+        );
       })
       .finally(() => {
         submitButton.textContent = "Enviar mensagem";
