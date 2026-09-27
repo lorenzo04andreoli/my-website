@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    try {
+      if (localStorage.getItem('portfolio-theme') === 'spider') document.documentElement.dataset.theme = 'spider';
+    } catch (_) {}
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -27,9 +32,13 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#experiencia">Experiências</a></li>
+            <li><a href="#certificacoes">Certificações</a></li>
             <li><a href="#projetos">Projetos</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Ativar identidade secreta" aria-pressed="false" title="Ativar identidade secreta">
+          <i class="fas fa-mask" aria-hidden="true"></i>
+        </button>
       </nav>
 
   </header>
@@ -41,22 +50,27 @@
     <section id="home" class="home">
       <canvas id="space-home" class="space-canvas"></canvas>
       <div class="home-content">
+        <div class="profile-portrait">
         <img 
           src="assets/img/Lorenzo Andreoli.png" 
           alt="Foto de Lorenzo Carneiro Andreoli" 
           class="profile-img"
         />
+        <img src="assets/img/lorenzo-aranha.jpeg" alt="Lorenzo com máscara e traje do Homem-Aranha" class="profile-img profile-spider" aria-hidden="true" />
+        </div>
 
         <h1 id="typewriter"></h1>
 
         <p class="desc">
-          Desenvolvedor Full Stack com foco em backend. Experiência prática no desenvolvimento
-          de sistemas, APIs REST, autenticação segura, banco de dados MySQL, Docker e serviços da AWS.
+          Desenvolvedor Java com foco em backend.
+          Transformo processos reais em sistemas web, das regras de negócio e segurança
+          à implantação em produção com Docker e AWS.
         </p>
 
         <div class="home-actions">
           <a href="#projetos" class="btn-primary">Ver projetos</a>
           <a href="#contato" class="btn-secondary">Entrar em contato</a>
+          <a href="assets/CV_Lorenzo_Andreoli_Desenvolvedor_Java.pdf" class="btn-secondary" download="CV_Lorenzo_Andreoli_Desenvolvedor_Java.pdf"><i class="fas fa-download" aria-hidden="true"></i> Baixar CV</a>
         </div>
       </div>
     </section>
@@ -67,30 +81,54 @@
       <div class="container">
         <h2>Sobre mim</h2>
 
-        <p>
-          Meu nome é Lorenzo Carneiro Andreoli, sou desenvolvedor de software com foco em backend
-          e construção de sistemas web escaláveis. Atualmente curso Análise e Desenvolvimento de Sistemas
-          na Pontifícia Universidade Católica do Paraná, com formação prevista para agosto de 2026.
-        </p>
+        <div class="sobre-grid">
+          <div class="sobre-apresentacao">
+            <p class="sobre-foco">Desenvolvimento backend &amp; cloud</p>
+            <p class="sobre-intro">Desenvolvo soluções para <strong>automatizar rotinas, organizar informações e apoiar quem usa o sistema no dia a dia.</strong></p>
+            <p>Com Java e Spring Boot, construí sistemas para gestão odontológica, acompanhamento institucional e divulgação de imóveis. Minha atuação vai das regras de negócio e APIs à segurança com Spring Security, persistência com JPA e MySQL e integração com Angular.</p>
+            <p>Também trabalho com testes em JUnit e Mockito, implantação com Docker e AWS e diagnóstico de serviços em Linux, conectando desenvolvimento e operação.</p>
+          </div>
 
-        <p>
-          Tenho experiência com Java, Spring Boot, Spring Security, APIs REST, MySQL, Docker, AWS e boas práticas
-          de arquitetura MVC. Também atuo no frontend com HTML, CSS, JavaScript, React e Next.js.
-        </p>
+          <div class="sobre-formacao">
+            <h3>Formação e certificação</h3>
+            <dl>
+              <div>
+                <dt>Análise e Desenvolvimento de Sistemas</dt>
+                <dd>PUCPR</dd>
+                <dd>Fev 2024 - Ago 2026.</dd>
+              </div>
 
-        <div class="skills">
-          <span>Java</span>
-          <span>Spring Boot</span>
-          <span>Spring Security</span>
-          <span>APIs REST</span>
-          <span>MySQL</span>
-          <span>Docker</span>
-          <span>AWS</span>
-          <span>JUnit</span>
-          <span>Mockito</span>
-          <span>React</span>
-          <span>Next.js</span>
-          <span>GitHub</span>
+              <div>
+                <dt>AWS Certified Cloud Practitioner</dt>
+                <dd>Amazon Web Services</dd>
+                <dd><a href="#certificacoes">Ver certificação <i class="fas fa-arrow-right" aria-hidden="true"></i></a></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="sobre-tecnologias">
+          <h3>Tecnologias com que trabalho</h3>
+          <div class="sobre-stack-grid">
+            <div>
+              <h4>Backend e dados</h4>
+              <ul class="skills" aria-label="Backend e dados">
+                <li>Java</li><li>Spring Boot</li><li>Spring Security</li><li>APIs REST</li><li>Python</li><li>MySQL</li><li>JPA</li><li>Hibernate</li><li>PostgreSQL</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Frontend</h4>
+              <ul class="skills" aria-label="Frontend">
+                <li>Angular</li><li>TypeScript</li><li>React</li><li>Next.js</li><li>HTML</li><li>CSS</li><li>JavaScript</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Cloud e qualidade</h4>
+              <ul class="skills" aria-label="Cloud e qualidade">
+                <li>AWS</li><li>Docker</li><li>GitHub</li><li>JUnit</li><li>Mockito</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -105,72 +143,95 @@
         <div class="experiencia-lista">
 
           <article class="experiencia-card">
-            <h3>Trainee em Desenvolvimento Full Stack</h3>
-            <h4>Wise Group</h4>
-            <span class="periodo">Apr 2026 – Jun 2026</span>
+            <h3>Trainee em Desenvolvimento de Software</h3>
+            <h4>Wise Systems</h4>
+            <span class="periodo">Abr 2026 – Jun 2026</span>
 
             <p>
-              Desenvolvi o Dentix, um sistema completo de gestão para clínicas odontológicas, cobrindo autenticação, 
-              controle de usuários, pacientes, dentistas, especialidades, agenda de consultas, relatórios, financeiro, 
-              notificações e perfil, com backend em Java Spring Boot e frontend em Angular.
+              Desenvolvimento do <strong>Dentix</strong>, sistema full stack para gestão de clínicas
+              odontológicas, centralizando pacientes, dentistas, consultas, relatórios e operações financeiras.
             </p>
 
             <ul>
-              <li>Desenvolvimento backend com Java, Spring Boot e Spring Security.</li>
-              <li>Autenticação e autorização com Spring Security, JWT com JJWT e BCrypt.</li>
-              <li>Criação de dashboards, relatórios gerenciais e gráficos administrativos.</li>
-              <li>Desenvolvimento frontend com Angular e TypeScript.</li>
-              <li>Containerização com Docker e deploy em AWS EC2.</li>
+              <li>Implementação de <strong>APIs REST</strong> com Java 17, Spring Boot e MySQL.</li>
+              <li>Segurança com <strong>Spring Security, JWT, RBAC e 2FA</strong>, BCrypt e criptografia do segredo de autenticação.</li>
+              <li>Modelagem de <strong>regras de negócio</strong> para agendamento, reagendamento e cancelamento, validando conflitos de horários e disponibilidade.</li>
+              <li>Frontend em <strong>Angular e TypeScript</strong>, integrado à API REST.</li>
+              <li>Containerização com <strong>Docker Compose</strong> e deploy em <strong>AWS EC2</strong>, com Nginx e HTTPS.</li>
             </ul>
           </article>
 
 
           <article class="experiencia-card">
-            <h3>Desenvolvedor Full Stack Freelance</h3>
+            <h3>Desenvolvedor Full Stack</h3>
             <h4>Conselho da Comunidade da Comarca de Paranaguá</h4>
             <span class="periodo">Jul 2025 – Fev 2026</span>
 
             <p>
-              Atuei como responsável técnico em um projeto institucional desenvolvido em Java, criando e implantando
-              um sistema web em produção para controle e acompanhamento de reeducandos em cumprimento de penas
-              alternativas.
+              Prestei serviço de desenvolvimento paralelamente ao estágio administrativo, idealizando e implantando o
+              <strong>CCControl</strong>, sistema institucional em uso operacional para acompanhamento de reeducandos
+              em cumprimento de penas alternativas.
             </p>
 
             <ul>
-              <li>Desenvolvimento backend com Java, Spring Boot e Spring Security.</li>
-              <li>Implementação de RBAC, BCrypt, 2FA, CSRF e HTTPS com SSL.</li>
-              <li>Criação de dashboards, relatórios gerenciais e gráficos administrativos.</li>
-              <li>Testes unitários e de integração com JUnit e Mockito.</li>
-              <li>Containerização com Docker e deploy em AWS EC2.</li>
+              <li><strong>Automação de um processo baseado em mais de 200 fichas físicas</strong>, com classificação automática de registros em dia, pendentes ou atrasados.</li>
+              <li>Regras de negócio e <strong>rotinas agendadas</strong> com Java 17, Spring Boot, Spring Data JPA, Hibernate e MySQL.</li>
+              <li>Controle de acesso com <strong>Spring Security, RBAC e 2FA</strong>, BCrypt, CSRF, Content Security Policy e HTTPS.</li>
+              <li><strong>Dashboards e relatórios gerenciais</strong> para acompanhamento de comparecimentos, pendências e atrasos.</li>
+              <li>Deploy em <strong>AWS EC2 com Docker Compose</strong> e MySQL isolado em rede interna.</li>
             </ul>
           </article>
 
           <article class="experiencia-card">
-            <h3>Estagiário de Desenvolvimento</h3>
+            <h3>Estagiário Administrativo</h3>
             <h4>Conselho da Comunidade da Comarca de Paranaguá</h4>
             <span class="periodo">Jan 2024 – Fev 2026</span>
 
             <p>
-              Desenvolvi soluções internas para otimização de processos administrativos no setor público, trabalhando
-              com backend, banco de dados e automações.
+              Apoiei as rotinas administrativas do Conselho, com foco em <strong>controle de processos, organização documental
+              e confiabilidade das informações</strong>. Apliquei automações para agilizar as atividades do estágio.
             </p>
 
             <ul>
-              <li>Desenvolvimento de sistemas com Java 17 e Spring Boot.</li>
-              <li>Modelagem de banco de dados relacional com MySQL, JPA e Hibernate.</li>
-              <li>Criação de rotinas automáticas com <code>@Scheduled</code>.</li>
-              <li>Estruturação de APIs REST com arquitetura MVC.</li>
-              <li>Versionamento com GitHub</li>
+              <li><strong>Controle de processos, prazos e pendências</strong>, mantendo registros e documentação atualizados.</li>
+              <li>Elaboração de <strong>planilhas e relatórios em Excel</strong> para acompanhamento das rotinas administrativas.</li>
+              <li>Criação de <strong>indicadores e dashboards em Power BI</strong> para apoiar a tomada de decisão.</li>
+              <li><strong>Conferência e validação de informações</strong>, contribuindo para a rastreabilidade dos registros institucionais.</li>
+              <li>Criação de <strong>automações em Python</strong> para leitura de documentos e organização de arquivos, agilizando tarefas repetitivas.</li>
             </ul>
           </article>
 
+
         </div>
+      </div>
+    </section>
+
+    <section id="certificacoes" class="certificacoes" aria-labelledby="certificacoes-titulo">
+      <div class="container">
+        <h2 id="certificacoes-titulo">Certificações</h2>
+        <a class="certificacao" href="https://www.credly.com/badges/8df2f65a-f291-4d83-bd21-b83428de87e2/public_url" target="_blank" rel="noopener noreferrer" aria-label="Ver credencial AWS Certified Cloud Practitioner no Credly (abre em nova aba)">
+          <img
+            src="assets/img/aws-certified-cloud-practitioner.png"
+            alt="Selo AWS Certified Cloud Practitioner, nível Foundational"
+            class="certificacao-selo"
+            width="340"
+            height="340"
+            loading="lazy"
+          />
+          <div class="certificacao-conteudo">
+            <p class="certificacao-emissor">Amazon Web Services</p>
+            <h3>AWS Certified Cloud Practitioner</h3>
+            <p class="certificacao-nivel">Foundational</p>
+            <p>Certificação conquistada em fundamentos de computação em nuvem AWS, reforçando minha atuação no desenvolvimento e na implantação de aplicações em nuvem.</p>
+          </div>
+        </a>
       </div>
     </section>
 
     <!-- Projetos -->
 
     <section id="projetos" class="projetos">
+      <canvas id="space-projetos" class="space-canvas" aria-hidden="true"></canvas>
       <div class="container">
         <h2>Projetos</h2>
 
@@ -186,8 +247,9 @@
               </div>
               <h3>CCControl</h3>
               <p>
-                Sistema institucional para controle de reeducandos, prazos judiciais, comparecimentos, status
-                processuais, dashboards e relatórios administrativos.
+                Sistema desenvolvido para o Conselho da Comunidade que automatiza o acompanhamento antes baseado em
+                mais de 200 fichas físicas. Java e Spring MVC, com 24 rotas HTTP, classificação automática
+                de pendências e relatórios. Implantado com Docker na AWS EC2.
               </p>
             </article>
           </a>
@@ -203,8 +265,27 @@
               </div>
               <h3>Dentix</h3>
               <p>
-                API backend do Dentix com autenticação, autorização, persistência em MySQL, arquitetura MVC e boas práticas
-                de segurança.
+                Sistema odontológico desenvolvido individualmente com Java, Spring Boot e Angular.
+                São 60 endpoints REST para pacientes, consultas e gestão financeira, com validação de
+                conflitos de horários, controle de acesso e autenticação em dois fatores. Deploy com Docker na AWS EC2.
+              </p>
+            </article>
+          </a>
+
+          <a href="https://github.com/lorenzo04andreoli/imobiliaria-api" target="_blank" rel="noopener noreferrer" class="projeto-link">
+            <article class="projeto-card">
+              <div class="projeto-img-wrapper">
+                <img src="assets/img/eliane-carneiro-imoveis.png" alt="Site Eliane Carneiro Imóveis com catálogo de imóveis em Paranaguá e filtros de busca" loading="lazy" />
+                <div class="overlay">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                  <span>Ver no GitHub</span>
+                </div>
+              </div>
+              <h3>Eliane Carneiro Imóveis</h3>
+              <p>
+                Sistema entregue a uma corretora local, com catálogo público e painel para gerenciar
+                imóveis e fotos. Angular e Spring Boot, com 17 endpoints REST e segurança JWT.
+                Em produção na AWS Lightsail, com Docker, Nginx, domínio próprio e HTTPS.
               </p>
             </article>
           </a>
@@ -220,7 +301,9 @@
               </div>
               <h3>Práticas de DevOps</h3>
             <p>
-              Projeto acadêmico desenvolvido em Java e Spring Boot, voltado às práticas de DevOps. Utilizando Dockerfile, GitHub Actions para estruturar um fluxo completo de CI/CD e testes unitários com JUnit e Mockito.
+              API Java com Spring Boot e pipeline CI/CD no GitHub Actions. Integra testes unitários
+              com JUnit e Mockito, containerização com Docker e notificações no Discord,
+              automatizando etapas de validação e entrega da aplicação.
             </p>
           </article>
           </a>
@@ -236,28 +319,13 @@
               </div>
               <h3>QR Code Generator</h3>
             <p>
-              Aplicação backend para geração de QR Codes, integração com armazenamento em nuvem e organização
-              de arquivos em bucket cloud.
+              Backend que integra a geração de QR Codes ao armazenamento em nuvem.
+              Reúne a criação dos códigos e a organização dos arquivos gerados em um bucket AWS S3,
+              conectando processamento na aplicação e persistência de arquivos.
             </p>
           </article>
           </a>
 
-          <a href="https://github.com/lorenzo04andreoli/Rename-Action" target="_blank" rel="noopener noreferrer" class="projeto-link">
-            <article class="projeto-card">
-              <div class="projeto-img-wrapper">
-                <img src="assets/img/automacao python.jpg" alt="Imagem ilustrativa de automação com Python" />
-                <div class="overlay">
-                  <i class="fas fa-arrow-up-right-from-square"></i>
-                  <span>Ver no GitHub</span>
-                </div>
-              </div>
-              <h3>Automação de Documentos</h3>
-              <p>
-                Ferramenta em Python para automatizar processos administrativos, leitura de documentos e organização
-                de arquivos digitais.
-              </p>
-            </article>
-          </a>
 
           <a href="https://github.com/lorenzo04andreoli/CurriculumAI" target="_blank" rel="noopener noreferrer" class="projeto-link">
             <article class="projeto-card">
@@ -270,7 +338,8 @@
               </div>
               <h3>Analisador de currículos com IA</h3>
               <p>
-                Aplicação em python para análise de currículos utilizando inteligência artificial.
+                Aplicação em Python voltada à análise de currículos com inteligência artificial,
+                explorando o uso de IA no processamento de informações profissionais.
               </p>
             </article>
           </a>
@@ -281,7 +350,6 @@
     <!-- Contato -->
 
     <section id="contato" class="contato">
-      <canvas id="space-contato" class="space-canvas"></canvas>
       <div class="container">
         <h2>Contato</h2>
 

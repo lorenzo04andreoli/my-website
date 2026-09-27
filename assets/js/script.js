@@ -1,3 +1,80 @@
+function initTheme() {
+  const button = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  const portrait = document.querySelector('.profile-portrait');
+  const photos = portrait.querySelectorAll('img');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let busy = false;
+
+  function applyTheme(spider) {
+    root.dataset.theme = spider ? 'spider' : 'dark';
+    button.setAttribute('aria-pressed', String(spider));
+    const label = spider ? 'Voltar ao tema original' : 'Ativar identidade secreta';
+    button.setAttribute('aria-label', label);
+    button.title = label;
+    photos[0].setAttribute('aria-hidden', String(spider));
+    photos[1].setAttribute('aria-hidden', String(!spider));
+    try { localStorage.setItem('portfolio-theme', root.dataset.theme); } catch (_) {}
+  }
+
+  applyTheme(root.dataset.theme === 'spider');
+  button.addEventListener('click', () => {
+    if (busy) return;
+    const spider = root.dataset.theme !== 'spider';
+    if (reduced.matches) { applyTheme(spider); return; }
+    busy = true;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'theme-web';
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    document.body.append(canvas);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) { applyTheme(spider); canvas.remove(); busy = false; return; }
+    const source = button.getBoundingClientRect();
+    const target = portrait.getBoundingClientRect();
+    const cx = target.bottom > 0 && target.top < innerHeight ? target.x + target.width / 2 : innerWidth / 2;
+    const cy = target.bottom > 0 && target.top < innerHeight ? target.y + target.height / 2 : innerHeight * 0.4;
+    const radius = Math.hypot(innerWidth, innerHeight) * 0.65;
+    const start = performance.now();
+    let applied = false;
+
+    function frame(now) {
+      const t = Math.min((now - start) / 800, 1);
+      if (t >= 0.42 && !applied) { applyTheme(spider); applied = true; }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalAlpha = t < 0.65 ? 0.85 : (1 - t) / 0.35 * 0.85;
+      ctx.strokeStyle = '#f5f5f5';
+      ctx.lineWidth = 1.4;
+      const travel = Math.min(t / 0.25, 1);
+      ctx.beginPath();
+      ctx.moveTo(source.x + source.width / 2, source.y + source.height / 2);
+      ctx.lineTo(source.x + source.width / 2 + (cx - source.x - source.width / 2) * travel, source.y + source.height / 2 + (cy - source.y - source.height / 2) * travel);
+      ctx.stroke();
+      const growth = Math.max(0, Math.min((t - 0.2) / 0.4, 1));
+      const reach = radius * growth * (spider ? 1 : Math.max(0, 1 - t));
+      for (let i = 0; i < 12; i++) {
+        const angle = i * Math.PI / 6;
+        ctx.beginPath(); ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(angle) * reach, cy + Math.sin(angle) * reach); ctx.stroke();
+      }
+      for (let ring = 1; ring <= 5; ring++) {
+        const r = reach * ring / 5;
+        ctx.beginPath(); ctx.moveTo(cx + r, cy);
+        for (let i = 1; i <= 12; i++) {
+          const angle = i * Math.PI / 6;
+          const middle = angle - Math.PI / 12;
+          ctx.quadraticCurveTo(cx + Math.cos(middle) * r * 0.86, cy + Math.sin(middle) * r * 0.86, cx + Math.cos(angle) * r, cy + Math.sin(angle) * r);
+        }
+        ctx.stroke();
+      }
+      if (t < 1) requestAnimationFrame(frame);
+      else { canvas.remove(); busy = false; }
+    }
+    requestAnimationFrame(frame);
+  });
+}
+
 /* TYPEWRITER */
 
 function initTypewriter() {
@@ -54,6 +131,13 @@ function initMenu() {
   hamburguer.addEventListener("click", () => {
     menu.classList.toggle("active");
     hamburguer.classList.toggle("active");
+  });
+
+  menu.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("active");
+      hamburguer.classList.remove("active");
+    });
   });
 }
 
@@ -194,7 +278,7 @@ function createSpace(canvasId, starCount = 150) {
       }
     });
 
-    requestAnimationFrame(draw);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) requestAnimationFrame(draw);
   }
 
   window.addEventListener("resize", () => {
@@ -210,10 +294,11 @@ function createSpace(canvasId, starCount = 150) {
 /* INIT GERAL */
 
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   initTypewriter();
   initMenu();
-  initContactForm();
   createSpace("space-home", 180);
   createSpace("space-experiencia", 120);
-  createSpace("space-contato", 100);
+  createSpace("space-projetos", 120);
+  initContactForm();
 });
