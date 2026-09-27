@@ -2,7 +2,8 @@
 const englishCopy = {
   '.menu a': ['Home', 'About', 'Experience', 'Certifications', 'Projects', 'Contact'],
   '.home .desc': ['Java developer focused on backend development. I turn real-world processes into web applications, from business rules and security to production deployment with Docker and AWS.'],
-  '.home-actions a': ['View projects', 'Get in touch', '<i class="fas fa-download" aria-hidden="true"></i> Download CV'],
+  '.home-actions > a': ['View projects', 'Get in touch'],
+  '.resume-actions a': ['<i class="fas fa-download" aria-hidden="true"></i> Resume · PT', '<i class="fas fa-download" aria-hidden="true"></i> Resume · EN'],
   '#sobre h2': ['About me'],
   '.sobre-foco': ['Backend development &amp; cloud'],
   '.sobre-intro': ['I build solutions to <strong>automate workflows, organize information and support the people who use them every day.</strong>'],
@@ -102,13 +103,6 @@ function initLanguage() {
   function applyLanguage(language) {
     const english = language === 'en';
     document.documentElement.lang = english ? 'en' : 'pt-BR';
-    const resume = document.querySelector('.home-actions a[download]');
-    const filename = english
-      ? 'Lorenzo_Andreoli_Junior_Java_Developer_Resume.pdf'
-      : 'CV_Lorenzo_Andreoli_Desenvolvedor_Java.pdf';
-    resume.setAttribute('href', `assets/${filename}`);
-    resume.setAttribute('download', filename);
-    resume.setAttribute('hreflang', english ? 'en' : 'pt-BR');
     for (const entry of entries) {
       const value = english ? entry.english : entry.portuguese;
       if (entry.attribute) entry.element.setAttribute(entry.attribute, value);

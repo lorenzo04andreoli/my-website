@@ -297,6 +297,30 @@ header {
   flex-wrap: wrap;
 }
 
+.resume-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.resume-actions .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .home-actions { gap: 12px; }
+  .home-actions > a { padding: 12px 16px; font-size: 0.875rem; }
+  .resume-actions { flex-basis: 100%; gap: 10px; }
+  .resume-actions .btn-secondary { padding: 10px 14px; }
+}
+
 .btn-primary,
 .btn-secondary {
   padding: 13px 26px;
