@@ -9,9 +9,7 @@ function initTheme() {
   function applyTheme(spider) {
     root.dataset.theme = spider ? 'spider' : 'dark';
     button.setAttribute('aria-pressed', String(spider));
-    const label = spider ? 'Voltar ao tema original' : 'Ativar identidade secreta';
-    button.setAttribute('aria-label', label);
-    button.title = label;
+    updateThemeLabel();
     photos[0].setAttribute('aria-hidden', String(spider));
     photos[1].setAttribute('aria-hidden', String(!spider));
     try { localStorage.setItem('portfolio-theme', root.dataset.theme); } catch (_) {}
@@ -191,7 +189,7 @@ function initContactForm() {
 
     if (!isValidFullName(formData.name)) {
       showToast(
-        "Informe seu nome completo, com nome e sobrenome.",
+        portfolioText("Informe seu nome completo, com nome e sobrenome.", "Enter your full name, including first and last name."),
         "linear-gradient(to right, #f44336, #d32f2f)"
       );
       return;
@@ -199,7 +197,7 @@ function initContactForm() {
 
     if (!isValidEmail(formData.email)) {
       showToast(
-        "Informe um e-mail válido, como nome@dominio.com.",
+        portfolioText("Informe um e-mail válido, como nome@dominio.com.", "Enter a valid email address, such as name@domain.com."),
         "linear-gradient(to right, #f44336, #d32f2f)"
       );
       return;
@@ -208,13 +206,13 @@ function initContactForm() {
     const serviceID = "service_cyx8a7z";
     const templateID = "template_or4y4yt";
 
-    submitButton.textContent = "Enviando...";
+    submitButton.textContent = portfolioText("Enviando...", "Sending...");
     submitButton.disabled = true;
 
     emailjs.send(serviceID, templateID, formData)
       .then(() => {
         showToast(
-          "E-mail enviado com sucesso!",
+          portfolioText("E-mail enviado com sucesso!", "Message sent successfully!"),
           "linear-gradient(to right, #4CAF50, #45a049)"
         );
 
@@ -222,12 +220,12 @@ function initContactForm() {
       })
       .catch(() => {
         showToast(
-          "Erro ao enviar e-mail. Por favor, tente novamente.",
+          portfolioText("Erro ao enviar e-mail. Por favor, tente novamente.", "Could not send your message. Please try again."),
           "linear-gradient(to right, #f44336, #d32f2f)"
         );
       })
       .finally(() => {
-        submitButton.textContent = "Enviar mensagem";
+        submitButton.textContent = portfolioText("Enviar mensagem", "Send message");
         submitButton.disabled = false;
       });
   });

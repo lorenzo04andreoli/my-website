@@ -346,6 +346,35 @@ header {
   line-height: 1.8;
 }
 
+.language-switch {
+  flex-shrink: 0;
+  width: 46px;
+  height: 34px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.language-switch:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.language-switch:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+@media (min-width: 701px) and (max-width: 1000px) {
+  .navegacao { gap: 12px; }
+  .menu { gap: 16px; }
+}
+
 .sobre-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
